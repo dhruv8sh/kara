@@ -47,20 +47,33 @@ PlasmoidItem {
     Activities.ActivityInfo { id: fullActivityInfo; activityId: ":current" }
 
     //Only this will be visible to the user
-    fullRepresentation: Item{
+    fullRepresentation: GridLayout {
+        columnSpacing: cfg.spacing
+        rowSpacing: cfg.spacing
+        columns: is_vertical ? 1 : pagerModel.count
+        rows: is_vertical ? pagerModel.count : 1
         Repeater {
             id: rep
-            model: pagerModel
-            delegate: Loader {
-                source: {
-                    switch(cfg.type) {
-                        case 1: return "representations/Type2.qml"
-                        case 2: return "representations/Type3.qml"
-                        case 3: return "representations/Type4.qml"
-                        default: return "representations/Type1.qml"
-                    }
+            model: pagerModel.count
+            delegate: Rectangle {
+                id: reptRect
+                function updateGeometry(width, height ) {
+                    reptRect.Layout.preferredWidth = width
+                    reptRect.Layout.preferredHeight = height
                 }
-                onLoaded: item.pos = index
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                color: "transparent"
+                Loader {
+                    source: {
+                        switch(cfg.type) {
+                            case 1: return "representations/Type2.qml"
+                            case 2: return "representations/Type3.qml"
+                            case 3: return "representations/Type4.qml"
+                            default: return "representations/Type1.qml"
+                        }
+                    }
+                    onLoaded: item.pos = index
+                }
             }
         }
     }
