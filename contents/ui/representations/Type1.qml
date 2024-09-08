@@ -7,7 +7,6 @@ Rectangle {
     id: pill
     z: 5
     property int pos
-    property int cfg.spacing: 3
     property real prevLen: 0
 
     opacity: curr_page == pos || !(cfg.plasmaStyleColors||cfg.accentStyleColors)? 1 : 0.5

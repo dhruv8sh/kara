@@ -14,7 +14,6 @@ Loader {
             default: return null
         }
     }
-    onLoaded: item.opacity = op
     Binding {
         target: loader.item
         property: "op"
