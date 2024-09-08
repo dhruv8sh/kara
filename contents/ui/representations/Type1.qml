@@ -8,23 +8,19 @@ Rectangle {
     z: 5
     property int pos
     property real prevLen: 0
-
+    anchors.centerIn: parent
     opacity: curr_page == pos || !(cfg.plasmaStyleColors||cfg.accentStyleColors)? 1 : 0.5
     color: root.txtColor
     radius: height * 0.5
-    Component.onDestruction: len -= width + cfg.spacing
+    
+    Component.onCompleted: {
+        reptRect.updateGeometry(width, height)
+    }
     onWidthChanged: {
-        if(!is_vertical) {
-            len += width + cfg.spacing
-            len -= prevLen
-            prevLen = width + cfg.spacing
-        }
+        reptRect.updateGeometry(width, height)
     }
     onHeightChanged: {
-        if(is_vertical) {
-            len += height + cfg.spacing - prevLen
-            prevLen = height + cfg.spacing
-        }
+        reptRect.updateGeometry(width, height)
     }
 
     TapHandler {
@@ -64,8 +60,6 @@ Rectangle {
                 target: pill
                 width: cfg.t1activeWidth
                 height: cfg.t1activeHeight
-                y: (root.height - cfg.t1activeHeight)/2
-                x: pos * (cfg.t1width+cfg.spacing)
                 opacity: 1
             }
         },State {
@@ -75,8 +69,6 @@ Rectangle {
                 target: pill
                 height: cfg.t1height
                 width: cfg.t1width
-                y: (root.height - height)/2
-                x: curr_page < pos ? pos*(cfg.t1width+cfg.spacing)+cfg.t1activeWidth-cfg.t1width : pos * (cfg.t1width+spacing)
                 opacity: 0.5
             }
         },State {
@@ -86,8 +78,6 @@ Rectangle {
                 target: pill
                 width: cfg.t1activeHeight
                 height: cfg.t1activeWidth
-                y: pos * (cfg.t1width+cfg.spacing)
-                x: (root.width - cfg.t1activeHeight)/2
                 opacity: 1
             }
         },State {
@@ -95,8 +85,6 @@ Rectangle {
             when: !!is_vertical && curr_page != pos
             PropertyChanges{
                 target: pill
-                y : curr_page < pos ? pos*(cfg.t1width+cfg.spacing)+cfg.t1activeWidth-cfg.t1width : pos*(cfg.t1width+spacing)
-                x: (root.width - cfg.t1height)/2
                 width: cfg.t1width
                 height: cfg.t1height
                 opacity: 0.5

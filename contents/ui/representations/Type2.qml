@@ -12,29 +12,22 @@ Rectangle {
     property int pos
     property bool hasActiveWindow: tasksModel.count>0
     property real prevLen: 0
-
-    clip: false
-    onWidthChanged: {
-        if(!is_vertical) {
-            len += width - prevLen
-            prevLen = width
-        }
-    }
-    onHeightChanged: {
-        if(is_vertical) {
-            len += height - prevLen
-            prevLen = height
-        }
-    }
-    Component.onDestruction: len -= is_vertical?height:width
+    color: "transparent"
     Layout.fillWidth: is_vertical
     Layout.fillHeight: !is_vertical
-    color: "transparent"
 
-    x: is_vertical ? 0 : pos * width
-    y: is_vertical ? pos * height: 0
-    width: Math.min(root.width,cfg.fixedLen)
-    height: is_vertical ? label.height : root.height
+    Component.onCompleted: {
+        reptRect.updateGeometry(width, height)
+    }
+    onWidthChanged: {
+        reptRect.updateGeometry(width, height)
+    }
+    onHeightChanged: {
+        reptRect.updateGeometry(width, height)
+    }
+
+    width: is_vertical ? root.width : Math.max(root.height,cfg.fixedLen)
+    height: is_vertical ? Math.max(label.height,cfg.fixedLen) : root.height
 
     Behavior on width   { NumberAnimation { duration: 300 }}
     Behavior on height  { NumberAnimation { duration: 300 }}
