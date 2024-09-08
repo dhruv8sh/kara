@@ -33,3 +33,7 @@ These are stored inside ```contents/ui/representations/```. To test yours, add t
 
 ## Adding new config options
 These will only be added after careful consideration and should not directly be added by the contributor. If you are opening a pull request for a new indicator or highlight style, hard-code the values temporarily.
+
+# Installation
+cd into the cloned directory and run ```sh install.sh```.
+Or install from the ```Get new widget functionality``` in KDE Plasma.
