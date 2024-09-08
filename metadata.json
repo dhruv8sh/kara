@@ -1,0 +1,25 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Dhruvesh Surolia",
+                "Email": "dhruv8sh@proton.me"
+            }
+        ],
+        "BugReportUrl": "https://github.com/dhruv8sh/kara/issues",
+        "Category": "Desktop Utility",
+        "Description": "Desktop switching utility.",
+        "EnabledByDefault": false,
+        "FormFactors": [
+            "desktop"
+        ],
+        "Icon": "virtual-desktops",
+        "Id": "org.dhruv8sh.kara",
+        "License": "GPL-3.0+",
+        "Name": "kara",
+        "Version": "0.5",
+        "Website": "https://github.com/dhruv8sh/kara"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

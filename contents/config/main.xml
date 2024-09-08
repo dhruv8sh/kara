@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+     http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+    <kcfgfile name=""/>
+
+    <group name="general">
+        <entry name="type"              type="Int"><default>1</default></entry>
+        <entry name="highlightType"     type="Int"><default>4</default></entry>
+        <entry name="wrapOn"            type="Bool"><default>true</default></entry>
+        <entry name="slightlyHighlight" type="Bool"><default>true</default></entry>
+        </group>
+
+    <group name="appearance">
+        <entry name="plasmaStyleColors" type="Bool"><default>true</default></entry>
+        <entry name="plasmaTxtColors"   type="Bool"><default>true</default></entry>
+        <entry name="spacing"   type="Int"><default>2</default></entry>
+        <entry name="pColor"    type="Color"><default>gray</default></entry>
+        <entry name="txtColor"  type="Color"><default>black</default></entry>
+        </group>
+
+    <group name="type1">
+        <entry name="t1width"           type="Int"><default>10</default></entry>
+        <entry name="t1height"          type="Int"><default>10</default></entry>
+        <entry name="t1activeWidth"     type="Int"><default>40</default></entry>
+        <entry name="t1activeHeight"    type="Int"><default>10</default></entry>
+        <entry name="t1spacing"         type="Int"><default>5</default></entry>
+        </group>
+    <group name="type2">
+        <entry name="template"          type="String"><default>%d</default></entry>
+        <entry name="addAsterisk"       type="Bool"><default>false</default></entry>
+        <entry name="t2bold"            type="Bool"><default>false</default></entry>
+        <entry name="t2italic"          type="Bool"><default>false</default></entry>
+        <entry name="t2growing"         type="Bool"><default>true</default></entry>
+        <entry name="fixedLen"          type="Int"><default>40</default></entry>
+        </group>
+    <group name="type3">
+        <entry name="iconsList"         type="String"><default>format-text-code
+            internet-services
+            music-note-16th</default></entry>
+        <entry name="iconExtra"    type="String"><default>view-more-horizontal-symbolic</default></entry>
+        </group>
+    <group name="type4">
+        <entry name="labelsList"         type="String"><default>Konqi
+            Katie
+            Keira
+            KD3
+            Dr4gon</default></entry>
+        <entry name="labelExtra"    type="String"><default>Dragon%d</default></entry>
+        </group>
+    <group name="highlights">
+        <entry name="sqDefaultSize"     type="Bool"><default>true</default></entry>
+        <entry name="sqHighlightWidth"  type="Int"><default>20</default></entry>
+        <entry name="sqHighlightHeight" type="Int"><default>20</default></entry>
+        <entry name="sqHighlightRadius" type="Int"><default>5</default></entry>
+        </group>
+    </kcfg>
