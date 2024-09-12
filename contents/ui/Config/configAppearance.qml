@@ -50,6 +50,7 @@ Kirigami.ScrollablePage {
     property alias cfg_slightlyHighlight: semiHighlight.checked
     property alias cfg_highlightOpacityFull: semiHighlightOpacityFull.checked
     property alias cfg_allowLabelRotate: allowLabelRotate.checked
+    property alias cfg_pillDontChangeOp: pillDontChangeOp.checked
 
     property string substituteText: '\n<b>Replacements:</b>\n%d - Desktop number\n%name - Desktop name\n%roman - Roman numerals'
 
@@ -71,9 +72,9 @@ Kirigami.ScrollablePage {
             id: defTextColor
             Kirigami.FormData.label: {
                 switch(cfg_type) {
-                    case 0: return "Custom Pill Color:"
-                    case 2: return "Custom Icon Color:"
-                    default: return "Custom Text Color:"
+                    case 0: return "Default Pill Color:"
+                    case 2: return "Default Icon Color:"
+                    default: return "Default Text Color:"
                 }
             }
         }
@@ -81,13 +82,14 @@ Kirigami.ScrollablePage {
             id: defTextAltColor
             Kirigami.FormData.label: {
                 switch(cfg_type) {
-                    case 0: "Active Pill color:"
-                    case 2: "Active Icon color:"
-                    default: "Active Text color:"
+                    case 0: "Default Active Pill color:"
+                    case 2: "Default Active Icon color:"
+                    default: "Default Active Text color:"
                 }
             }
         }
         PC3.CheckBox {
+            id: pillDontChangeOp
             Kirigami.FormData.label: "Dont change opacity of inactive pills:"
         }
         Common.PixelSlider {

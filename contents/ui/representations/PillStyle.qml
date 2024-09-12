@@ -24,6 +24,7 @@ Rectangle {
     Behavior on width   {NumberAnimation{duration: cfg.animationDuration}}
     Behavior on height  {NumberAnimation{duration: cfg.animationDuration}}
     Behavior on opacity {NumberAnimation{duration: cfg.animationDuration}}
+    Behavior on radius  {NumberAnimation{duration: cfg.animationDuration}}
 
     states: [
         State {
@@ -42,7 +43,7 @@ Rectangle {
                 target: pill
                 height: cfg.t1height
                 width: cfg.t1width
-                opacity: 0.5
+                opacity: cfg.pillDontChangeOp?1:0.5
             }
         },State {
             name: "verticalActive"
@@ -60,7 +61,7 @@ Rectangle {
                 target: pill
                 width: cfg.t1width
                 height: cfg.t1height
-                opacity: 0.5
+                opacity: cfg.pillDontChangeOp?1:0.5
             }
         }
     ]

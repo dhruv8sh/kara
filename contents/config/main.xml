@@ -55,6 +55,7 @@ Dr4gon</default></entry>
         <entry name="activeBold"        type="Bool"><default>true</default></entry>
         <entry name="activeItalic"      type="Bool"><default>false</default></entry>
         <entry name="allowLabelRotate"  type="Bool"><default>false</default></entry>
+        <entry name="pillDontChangeOp"  type="Bool"><default>false</default></entry>
         <entry name="fontSize"          type="Int"><default>12</default></entry>
         <entry name="activeFontSize"    type="Int"><default>12</default></entry>
         <entry name="fixedLen"          type="Int"><default>40</default></entry>
