@@ -18,18 +18,10 @@ PlasmoidItem {
     property var form           : plasmoid.formFactor
     property bool is_vertical   : form == PlasmaCore.Types.Vertical
     property alias curr_page    : pagerModel.currentPage
-    property real len           : 0
-    property real breadth       : Utils.get_breadth()
     property var pColor         : cfg.plasmaStyleColors ? Kirigami.Theme.highlightColor : cfg.pColor
     property var txtColor       : cfg.plasmaTxtColors ? Kirigami.Theme.textColor : cfg.txtColor
     property var customLabels   : cfg.labelsList.split('\n')
     property var customIcons    : cfg.iconsList.split('\n')
-
-
-    Layout.minimumWidth     : Math.max(40,is_vertical?breadth:len)
-    Layout.minimumHeight    : Math.max(40,is_vertical?len:breadth)
-    Layout.maximumWidth     : Layout.minimumWidth
-    Layout.maximumHeight    : Layout.minimumHeight
 
     clip: false
 
@@ -48,8 +40,8 @@ PlasmoidItem {
 
     //Only this will be visible to the user
     fullRepresentation: GridLayout {
-        columnSpacing: cfg.spacing
-        rowSpacing: cfg.spacing
+        columnSpacing: is_vertical ? 0 : cfg.spacing
+        rowSpacing: 0//is_vertical ? cfg.spacing : 0
         columns: is_vertical ? 1 : pagerModel.count
         rows: is_vertical ? pagerModel.count : 1
         Repeater {
@@ -57,19 +49,18 @@ PlasmoidItem {
             model: pagerModel.count
             delegate: Rectangle {
                 id: reptRect
-                function updateGeometry(width, height ) {
-                    reptRect.Layout.preferredWidth = width
-                    reptRect.Layout.preferredHeight = height
+                function updateGeometry(w, h) {
+                    reptRect.Layout.preferredWidth = w
+                    reptRect.Layout.preferredHeight = h
                 }
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 color: "transparent"
                 Loader {
                     source: {
                         switch(cfg.type) {
-                            case 1: return "representations/Type2.qml"
-                            case 2: return "representations/Type3.qml"
-                            case 3: return "representations/Type4.qml"
-                            default: return "representations/Type1.qml"
+                            case 1: return "representations/TextStyle.qml"
+                            case 2: return "representations/IconStyle.qml"
+                            default: return "representations/PillStyle.qml"
                         }
                     }
                     onLoaded: item.pos = index

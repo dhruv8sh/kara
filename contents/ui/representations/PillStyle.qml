@@ -7,51 +7,24 @@ Rectangle {
     id: pill
     z: 5
     property int pos
-    property real prevLen: 0
     anchors.centerIn: parent
     opacity: curr_page == pos || !(cfg.plasmaStyleColors||cfg.accentStyleColors)? 1 : 0.5
-    color: root.txtColor
-    radius: height * 0.5
-    
-    Component.onCompleted: {
-        reptRect.updateGeometry(width, height)
-    }
-    onWidthChanged: {
-        reptRect.updateGeometry(width, height)
-    }
-    onHeightChanged: {
-        reptRect.updateGeometry(width, height)
-    }
+
+    color: curr_page == pos && !cfg.defaultAltTextColors? cfg.altColor : root.txtColor
+    radius: (cfg.t1radius/10) * height
+
+    Component.onCompleted:  reptRect.updateGeometry(width, height)
+    onWidthChanged:         reptRect.updateGeometry(width, height)
+    onHeightChanged:        reptRect.updateGeometry(width, height)
 
     TapHandler {
         onTapped: pagerModel.changePage(pos)
     }
 
-    Behavior on x {
-        NumberAnimation {
-            duration: !is_vertical?200:0
-        }
-    }
-    Behavior on y {
-        NumberAnimation {
-            duration: !is_vertical?0:200
-        }
-    }
-    Behavior on width {
-        NumberAnimation {
-            duration: 200
-        }
-    }
-    Behavior on height {
-        NumberAnimation {
-            duration: 200
-        }
-    }
-    Behavior on opacity {
-        NumberAnimation {
-            duration: 300
-        }
-    }
+    Behavior on width   {NumberAnimation{duration: cfg.animationDuration}}
+    Behavior on height  {NumberAnimation{duration: cfg.animationDuration}}
+    Behavior on opacity {NumberAnimation{duration: cfg.animationDuration}}
+
     states: [
         State {
             name: "horizontalActive"

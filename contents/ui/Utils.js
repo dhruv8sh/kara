@@ -1,21 +1,81 @@
 //Roman numerals 1..=50
 
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX",
-"X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX",
-"XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX",
-"XXXI", "XXXII", "XXXIII", "XXXIV", "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX", "XL",
-"XLI", "XLII", "XLIII", "XLIV", "XLV", "XLVI", "XLVII", "XLVIII", "XLIX", "L"]
+    "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX",
+    "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX",
+    "XXXI", "XXXII", "XXXIII", "XXXIV", "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX", "XL",
+    "XLI", "XLII", "XLIII", "XLIV", "XLV", "XLVI", "XLVII", "XLVIII", "XLIX", "L"]
+const HINDU = [
+    '१', '२', '३', '४', '५', '६', '७', '८', '९', '१०',
+    '११', '१२', '१३', '१४', '१५', '१६', '१७', '१८', '१९', '२०',
+    '२१', '२२', '२३', '२४', '२५', '२६', '२७', '२८', '२९', '३०',
+    '३१', '३२', '३३', '३४', '३५', '३६', '३७', '३८', '३९', '४०',
+    '४१', '४२', '४३', '४४', '४५', '४६', '४७', '४८', '४९', '५०'
+];
+const MANDARIN = [
+    '一', '二', '三', '四', '五', '六', '七', '八', '九', '十',
+    '十一', '十二', '十三', '十四', '十五', '十六', '十七', '十八', '十九', '二十',
+    '二十一', '二十二', '二十三', '二十四', '二十五', '二十六', '二十七', '二十八', '二十九', '三十',
+    '三十一', '三十二', '三十三', '三十四', '三十五', '三十六', '三十七', '三十八', '三十九', '四十',
+    '四十一', '四十二', '四十三', '四十四', '四十五', '四十六', '四十七', '四十八', '四十九', '五十'
+];
 
-function get_roman(pos) {
+function getRoman(pos) {
     return ROMAN[pos]
+}
+function getHindu(pos) {
+    return HINDU[pos]
+}
+function getChinese(pos) {
+    return MANDARIN[pos]
 }
 function get_breadth() {
     if(!is_vertical) {
         if(plasmoid.location == PlasmaCore.Types.Floating || plasmoid.location == PlasmaCore.Types.Desktop) return 40
-        else return parent.height
+            else return parent.height
     } else {
         if(plasmoid.location == PlasmaCore.Types.Floating || plasmoid.location == PlasmaCore.Types.Desktop)
             return 40
-        else return parent.width
+            else return parent.width
+    }
+}
+/*
+function go_right() {
+    if(pagerModel.count <= curr_page) return curr_page = 0
+        else return curr_page=1
+}
+function go_left() {
+    if(curr_page <= 0) return curr_page-1
+        else return curr_page-1
+}
+function go_up() {
+    let c = pagerModel.count/pagerModel.rowCount
+    if(c >= curr_page) return curr_page - c
+        else return curr_page + pagerModel.count - c
+}
+function go_down() {
+    let c = pagerModel.count/pagerModel.rowCount
+    if(pagerModel.count-c <= curr_page) return curr_page%c
+        else return curr_page + c
+}*/
+function getLabel(pos,curr) {
+    function replaceLabel(template) {
+        return template
+            .replace("%name",virtualDesktopInfo.desktopNames[pos])
+            .replace("%d",pos+1)
+            .replace("%roman",Utils.getRoman(pos))
+            .replace("%hindu",Utils.getHindu(pos))
+            .replace("%chinese",Utils.getChinese(pos))
+    }
+    switch(cfg.labelSource) {
+        case 1: return virtualDesktopInfo.desktopNames[pos]
+        case 2: return replaceLabel(cfg.template)
+        case 3: return pos==curr ? replaceLabel(cfg.activeTemplate):(pos<curr?replaceLabel(cfg.beforeTemplate):replaceLabel(cfg.afterTemplate))
+        case 4: return replaceLabel(root.customLabels[pos] ?? cfg.labelExtra)
+        case 5: return getRoman(pos)
+        case 6: return getHindu(pos)
+        case 7: return getChinese(pos)
+        default: return pos+1
+
     }
 }

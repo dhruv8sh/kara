@@ -12,23 +12,17 @@ Rectangle {
     z: 5
     property int pos
     property bool hasActiveWindow: tasksModel.count>0
-    property real prevLen: 0
+    property alias attentionRequired: tasksModel.anyTaskDemandsAttention
     Layout.fillWidth: is_vertical
     Layout.fillHeight: !is_vertical
     color: "transparent"
     clip: false
 
-    Component.onCompleted: {
-        reptRect.updateGeometry(width, height)
-    }
-    onWidthChanged: {
-        reptRect.updateGeometry(width, height)
-    }
-    onHeightChanged: {
-        reptRect.updateGeometry(width, height)
-    }
+    Component.onCompleted: reptRect.updateGeometry(width, height)
+    onWidthChanged: reptRect.updateGeometry(width, height)
+    onHeightChanged: reptRect.updateGeometry(width, height)
 
-    width: is_vertical ? root.width : Math.max(root.height,cfg.fixedLen)
+    width:  is_vertical ? root.width : Math.max(root.height,cfg.fixedLen)
     height: is_vertical ? Math.max(root.width,cfg.fixedLen) : root.height
 
     Behavior on width   { NumberAnimation { duration: 300 }}
@@ -53,7 +47,7 @@ Rectangle {
         anchors.centerIn: parent
         height: Math.min(parent.width, parent.height)
         width: height
-        color: root.txtColor
+        color: curr_page == pos && !cfg.defaultAltTextColors? cfg.altColor : root.txtColor
     }
     Common.HighlightLoader{}
 }

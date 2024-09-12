@@ -12,14 +12,13 @@ Rectangle {
         anchors.centerIn: parent
         height: cfg.sqDefaultSize ? parent.height * 0.8 : cfg.sqHighlightHeight
         width : cfg.sqDefaultSize ? parent.width  * 0.8 : cfg.sqHighlightWidth
-        onHeightChanged: console.log(height)
         radius: height*0.22
-        color: root.pColor
+        color : (curr_page==pos||cfg.plasmaSemiColors)?root.pColor:cfg.semiColor
         z: -1
     }
     Behavior on opacity {
         NumberAnimation {
-            duration: 500
+            duration: cfg.animationDuration
         }
     }
 }
