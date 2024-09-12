@@ -31,16 +31,15 @@ Loader {
         value: op
         when: loader.status == Loader.Ready
     }
-    MouseArea {
-        id: mouseArea
-        anchors.fill: parent
-        hoverEnabled: cfg.highlightOnHover
-        onEntered: op = 0.4
-        onExited: op = calcOp()
+    HoverHandler {
+        id: hoverHandler
+        onHoveredChanged: {
+            op = hovered ? 0.4 : calcOp()
+        }
     }
     Connections{
         target: root
-        onCurr_pageChanged: op = mouseArea.containsMouse ? 0.4 : calcOp()
+        onCurr_pageChanged: op = hoverHandler.hovered ? 0.4 : calcOp()
     }
     function calcOp() {
         if(curr_page==pos) return 1
