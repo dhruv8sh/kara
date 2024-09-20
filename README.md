@@ -30,5 +30,35 @@ These will only be added after careful consideration and should not directly be 
 If you are opening a pull request for a new indicator or highlight style, hard-code the values temporarily.
 
 # Installation
+
+## Nix package
+
+For those using NixOS or the Nix package manager, you can install the widget using one of these methods:
+
+- NixOS
+
+```nix
+environment.systemPackages = with pkgs; [ kara ];
+```
+
+- [home-manager](https://github.com/nix-community/home-manager)
+
+```nix
+home.packages = with pkgs; [ kara ];
+```
+
+- [plasma-manager](https://github.com/nix-community/plasma-manager): If the widget is added to a panel or to the desktop, it will be installed automatically.
+- Other distros using nix package manager:
+
+```
+# without flakes:
+nix-env -iA nixpkgs.kara
+
+# with flakes:
+nix profile install nixpkgs#kara
+```
+
+## Manual installation
+
 cd into the cloned directory and run ```sh install.sh```.
 Or install from the ```Get new widget functionality``` in KDE Plasma.
