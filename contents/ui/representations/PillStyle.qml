@@ -6,20 +6,13 @@ import org.kde.plasma.plasmoid
 Rectangle {
     id: pill
     z: 5
-    property int pos
     anchors.centerIn: parent
-    opacity: curr_page == pos || !(cfg.plasmaStyleColors||cfg.accentStyleColors)? 1 : 0.5
-
-    color: curr_page == pos && !cfg.defaultAltTextColors? cfg.altColor : root.txtColor
+    opacity: isActive || !cfg.plasmaStyleColors ? 1 : 0.5
+    color: contentColor
     radius: (cfg.t1radius/10) * height
 
-    Component.onCompleted:  reptRect.updateGeometry(width, height)
-    onWidthChanged:         reptRect.updateGeometry(width, height)
-    onHeightChanged:        reptRect.updateGeometry(width, height)
-
-    TapHandler {
-        onTapped: pagerModel.changePage(pos)
-    }
+    onWidthChanged:         updateGeometry(width, height)
+    onHeightChanged:        updateGeometry(width, height)
 
     Behavior on width   {NumberAnimation{duration: cfg.animationDuration}}
     Behavior on height  {NumberAnimation{duration: cfg.animationDuration}}

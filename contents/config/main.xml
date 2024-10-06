@@ -80,5 +80,6 @@ music-note-16th</default></entry>
 
     <group name="mouseActions">
         <entry name="highlightOnHover"  type="Bool"><default>true</default></entry>
+        <entry name="tooltipOnHover"    type="Bool"><default>false</default></entry>
         </group>
     </kcfg>

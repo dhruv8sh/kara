@@ -7,7 +7,8 @@ Kirigami.ScrollablePage {
     property alias cfg_wrapOn: wrap.checked
     property alias cfg_animationDuration: animTime.value
     property alias cfg_blinkOnAttentionRequired: blinkOnAttentionRequired.checked
-    property alias cfg_showHighlightOnHover: hoveringShowsHighlight.checked
+    property alias cfg_highlightOnHover: hoveringShowsHighlight.checked
+    property alias cfg_tooltipOnHover: hoveringShowsTooltip.checked
     title: i18nc("@title","General")
     Kirigami.FormLayout {
         anchors.fill: parent
@@ -19,6 +20,10 @@ Kirigami.ScrollablePage {
         PC3.CheckBox {
             Kirigami.FormData.label: i18n("Hovering reveals highlight:")
             id: hoveringShowsHighlight
+        }
+        PC3.CheckBox {
+            Kirigami.FormData.label: i18n("Hovering reveals tooltip:")
+            id: hoveringShowsTooltip
         }
         PC3.CheckBox {
             id: wrap

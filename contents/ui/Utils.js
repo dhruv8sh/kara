@@ -34,30 +34,10 @@ function get_breadth() {
         if(plasmoid.location == PlasmaCore.Types.Floating || plasmoid.location == PlasmaCore.Types.Desktop) return 40
             else return parent.height
     } else {
-        if(plasmoid.location == PlasmaCore.Types.Floating || plasmoid.location == PlasmaCore.Types.Desktop)
-            return 40
+        if(plasmoid.location == PlasmaCore.Types.Floating || plasmoid.location == PlasmaCore.Types.Desktop) return 40
             else return parent.width
     }
 }
-/*
-function go_right() {
-    if(pagerModel.count <= curr_page) return curr_page = 0
-        else return curr_page=1
-}
-function go_left() {
-    if(curr_page <= 0) return curr_page-1
-        else return curr_page-1
-}
-function go_up() {
-    let c = pagerModel.count/pagerModel.rowCount
-    if(c >= curr_page) return curr_page - c
-        else return curr_page + pagerModel.count - c
-}
-function go_down() {
-    let c = pagerModel.count/pagerModel.rowCount
-    if(pagerModel.count-c <= curr_page) return curr_page%c
-        else return curr_page + c
-}*/
 function getLabel(pos,curr) {
     function replaceLabel(template) {
         return template
@@ -78,4 +58,20 @@ function getLabel(pos,curr) {
         default: return pos+1
 
     }
+}
+function getHighlightOpacity() {
+    if(cfg.highlightOnHover && hovered) return 0.4
+        else if(isActive) return 1
+            else if(cfg.slightlyHighlight && hasWindows) return 0.6
+                else return 0
+}
+function getRepSource() {
+    switch(cfg.type) {
+        case 1: return "representations/TextStyle.qml"
+        case 2: return "representations/IconStyle.qml"
+        default: return "representations/PillStyle.qml"
+    }
+}
+function usesHighlight() {
+    cfg.type != 0
 }

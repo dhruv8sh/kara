@@ -4,9 +4,9 @@ import org.kde.kirigami as Kirigami
 Rectangle {
     id: full
     anchors.fill: parent
-    color: (curr_page==pos||cfg.plasmaSemiColors)?root.pColor:cfg.semiColor
     z: -2
     property alias op: full.opacity
+    property alias col: full.color
     Behavior on opacity {
         NumberAnimation {
             duration: cfg.animationDuration

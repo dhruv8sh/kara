@@ -11,4 +11,9 @@ ConfigModel {
          icon: "settings-configure-symbolic"
          source: "Config/configBehavior.qml"
     }
+    ConfigCategory {
+        name: i18n("Customizations")
+        icon: "color-management"
+        source: "Config/configCustomization.qml"
+    }
 }

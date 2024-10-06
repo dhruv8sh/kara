@@ -10,7 +10,7 @@ Kirigami.ScrollablePage {
     title: i18nc("@title","General")
 
     //Types-----------------------------------
-    property alias cfg_type: type.currentIndex
+    property alias cfg_type: type.style
     property alias cfg_highlightType: hType.currentIndex
     //Dimensions
     property alias cfg_spacing: spacing.value
@@ -26,31 +26,13 @@ Kirigami.ScrollablePage {
     property alias cfg_labelExtra: extraCustomLabel.text
     property alias cfg_iconExtra: extraCustomIcon.text
     //Decorations
-    property alias cfg_bold: bolden.checked
-    property alias cfg_italic: italicize.checked
-    property alias cfg_fontSize: textSize.value
-    property alias cfg_activeBold: activeBolden.checked
-    property alias cfg_activeItalic: activeItalicize.checked
-    property alias cfg_activeFontSize: activeFontSize.value
-    property alias cfg_plasmaStyleColors: defHighlightColor.checked
-    property alias cfg_plasmaTxtColors: defTextColor.checked
-    property alias cfg_defaultAltTextColors: defTextAltColor.checked
-    property alias cfg_plasmaSemiColors: defSemiHighlightColor.checked
-    property alias cfg_pColor: defHighlightColor.color
-    property alias cfg_txtColor: defTextColor.color
-    property alias cfg_semiColor: defSemiHighlightColor.color
-    property alias cfg_altColor: defTextAltColor.color
     //Other
     property alias cfg_template: template.text
     property alias cfg_labelSource: labelSource.currentIndex
     property alias cfg_beforeTemplate: beforeTemplate.text
     property alias cfg_afterTemplate: afterTemplate.text
     property alias cfg_activeTemplate: activeTemplate.text
-    property alias cfg_addAsterisk: asteriskCheck.checked
-    property alias cfg_slightlyHighlight: semiHighlight.checked
-    property alias cfg_highlightOpacityFull: semiHighlightOpacityFull.checked
     property alias cfg_allowLabelRotate: allowLabelRotate.checked
-    property alias cfg_pillDontChangeOp: pillDontChangeOp.checked
 
     property string substituteText: '\n<b>Replacements:</b>\n%d - Desktop number\n%name - Desktop name\n%roman - Roman numerals'
 
@@ -60,37 +42,7 @@ Kirigami.ScrollablePage {
 
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: "Indicator Settings"
-        }
-        QQC2.ComboBox {
-            id: type
-            Kirigami.FormData.label: "Indicator Style:"
-            model: ["Pills","Text",
-            "Icons"]
-        }
-        Common.ColorForm {
-            id: defTextColor
-            Kirigami.FormData.label: {
-                switch(cfg_type) {
-                    case 0: return "Default Pill Color:"
-                    case 2: return "Default Icon Color:"
-                    default: return "Default Text Color:"
-                }
-            }
-        }
-        Common.ColorForm {
-            id: defTextAltColor
-            Kirigami.FormData.label: {
-                switch(cfg_type) {
-                    case 0: "Default Active Pill color:"
-                    case 2: "Default Active Icon color:"
-                    default: "Default Active Text color:"
-                }
-            }
-        }
-        PC3.CheckBox {
-            id: pillDontChangeOp
-            Kirigami.FormData.label: "Dont change opacity of inactive pills:"
+            Kirigami.FormData.label: "Layout Settings"
         }
         Common.PixelSlider {
             id: spacing
@@ -98,8 +50,6 @@ Kirigami.ScrollablePage {
             from: 0
             to: 20
         }
-
-        //Content for Pills type
         Common.PixelDimensions {
             id: pillDimen
             from: 1
@@ -117,17 +67,47 @@ Kirigami.ScrollablePage {
             from: 0
             to: 5
             stepSize: 0.5
+            visible: cfg_type == 0
             Kirigami.FormData.label: "Pill radius:"
         }
-
         Common.PixelSlider {
             visible: cfg_type > 0
             Kirigami.FormData.label: "Fixed length:"
             id: fixedLen
             from: 1
-            to: 500
+            to: 150
+        }
+        PC3.CheckBox {
+            visible: cfg_type == 1
+            id: allowLabelRotate
+            Kirigami.FormData.label: "Rotate Label for vertical panels:"
         }
 
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            Kirigami.FormData.label: "Indicator Settings"
+        }
+        RowLayout {
+            id: type
+            Kirigami.FormData.label: "Indicator Style:"
+            property int style
+            PC3.RadioButton {
+                text: "Pills"
+                checked: type.style == 0
+                onCheckedChanged: if(checked) type.style = 0
+            }
+            PC3.RadioButton {
+                text: "Text"
+                checked: type.style == 1
+                onCheckedChanged: if(checked) type.style = 1
+            }
+            PC3.RadioButton {
+                text: "Icons"
+                checked: type.style == 2
+                onCheckedChanged: if(checked) type.style = 2
+            }
+        }
         QQC2.ComboBox {
             id: labelSource
             visible: cfg_type == 1
@@ -180,61 +160,10 @@ Kirigami.ScrollablePage {
             <b>%hindu</b>: Hindu-Arabic Numerals<br>
             <b>%chinese</b>: Chinese/Mandarin Numerals"
         }
-        PC3.CheckBox {
-            visible: cfg_type == 1
-            id: asteriskCheck
-            Kirigami.FormData.label: "Add asterisk(*) for active window available:"
-        }
 
-        RowLayout {
-            Kirigami.FormData.label: "Active Title Emphasis:"
-            visible: cfg_type == 1
-            PC3.ToolButton {
-                id: activeBolden
-                checkable: true
-                icon.name: "format-text-bold"
-                PC3.ToolTip{ text: "Bold text" }
-            }
-            PC3.ToolButton {
-                id: activeItalicize
-                checkable: true
-                icon.name: "format-text-italic"
-                PC3.ToolTip{ text: "Italic text" }
-            }
-            PC3.SpinBox {
-                id: activeFontSize
-                from: 6
-                to: 100
-            }
-        }
-        RowLayout {
-            Kirigami.FormData.label: "Inactive Title Emphasis:"
-            visible: cfg_type == 1
-            PC3.ToolButton {
-                id: bolden
-                checkable: true
-                icon.name: "format-text-bold"
-                PC3.ToolTip{ text: "Bold text" }
-            }
-            PC3.ToolButton {
-                id: italicize
-                checkable: true
-                icon.name: "format-text-italic"
-                PC3.ToolTip{ text: "Italic text" }
-            }
-            PC3.SpinBox {
-                id: textSize
-                from: 6
-                to: 100
-            }
-        }
-        PC3.CheckBox {
-            visible: cfg_type == 1
-            id: allowLabelRotate
-            Kirigami.FormData.label: "Rotate Label for vertical panels:"
-        }
-        //------------------------------------------------------
-        //For Icon Type-----------------------------------------
+
+
+
         RowLayout {
             Kirigami.FormData.label: "Custom icons:"
             visible: cfg_type == 2
@@ -270,26 +199,6 @@ Kirigami.ScrollablePage {
             id: hType
             Kirigami.FormData.label: "Highlight Style:"
             model: ["None","Line","Square","Full","Full with Line"]
-        }
-        Common.ColorForm {
-            id: defHighlightColor
-            enabled: cfg_type > 0
-            Kirigami.FormData.label: "Default Highlight Color:"
-        }
-        PC3.CheckBox {
-            id: semiHighlight
-            Kirigami.FormData.label: "Semi-highlight desktop with open windows:"
-        }
-        Common.ColorForm {
-            id: defSemiHighlightColor
-            enabled: cfg_type > 0 && semiHighlight.checked
-            Kirigami.FormData.label: "Default Semi-Highlight Color:"
-            onCheckedChanged: if(checked) semiHighlightOpacityFull.checked = false
-        }
-        PC3.CheckBox {
-            id: semiHighlightOpacityFull
-            enabled: !defSemiHighlightColor.checked
-            Kirigami.FormData.label: "Do not alter opacity of custom\nsemi-highlight colors:"
         }
     }
 }

@@ -8,7 +8,7 @@ Rectangle {
     color: "transparent"
     property alias op: hRect.opacity
     property alias fill: fullRect.visible
-    property var col: (curr_page==pos||cfg.plasmaSemiColors)?root.pColor:cfg.semiColor
+    property var col
     onOpChanged: fullRect.opacity = op - 0.3
     opacity: 1
     Rectangle {
