@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+  http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+    <kcfgfile name=""/>
+
+    <group name="general">
+        <entry name="type"              type="Int"><default>1</default></entry>
+        <entry name="highlightType"     type="Int"><default>4</default></entry>
+        <entry name="wrapOn"            type="Bool"><default>true</default></entry>
+        <entry name="slightlyHighlight" type="Bool"><default>true</default></entry>
+        <entry name="rotateContent"     type="Bool"><default>true</default></entry>
+        <entry name="higlightOnHover"   type="Bool"><default>true</default></entry>
+        <entry name="highlightOpacityFull" type="Bool"><default>true</default></entry>
+        <entry name="blinkOnAttentionRequired" type="Bool"><default>true</default></entry>
+        <entry name="animationDuration" type="Int"><default>0</default></entry>
+        <entry name="spacing"           type="Int"><default>2</default></entry>
+        <entry name="showHighlightOnHover" type="Bool"><default>true</default></entry>
+        </group>
+
+    <group name="appearance">
+        <entry name="plasmaStyleColors" type="Bool"><default>true</default></entry>
+        <entry name="plasmaTxtColors"   type="Bool"><default>true</default></entry>
+        <entry name="plasmaSemiColors"  type="Bool"><default>true</default></entry>
+        <entry name="defaultAltTextColors"  type="Bool"><default>true</default></entry>
+        <entry name="pColor"    type="Color"><default>gray</default></entry>
+        <entry name="txtColor"  type="Color"><default>black</default></entry>
+        <entry name="semiColor" type="Color"><default>white</default></entry>
+        <entry name="altColor"  type="Color"><default>white</default></entry>
+        </group>
+
+    <group name="type1">
+        <entry name="t1radius"          type="Int"><default>5</default></entry>
+        <entry name="t1width"           type="Int"><default>10</default></entry>
+        <entry name="t1height"          type="Int"><default>10</default></entry>
+        <entry name="t1activeWidth"     type="Int"><default>40</default></entry>
+        <entry name="t1activeHeight"    type="Int"><default>10</default></entry>
+        </group>
+    <group name="type2">
+        <entry name="labelSource"       type="Int"><default>2</default></entry>
+        <entry name="template"          type="String"><default>D%d</default></entry>
+        <entry name="beforeTemplate"    type="String"><default>-</default></entry>
+        <entry name="activeTemplate"    type="String"><default>C</default></entry>
+        <entry name="afterTemplate"     type="String"><default>o</default></entry>
+        <entry name="labelsList"        type="String"><default>Konqi
+Katie
+Keira
+KD3
+Dr4gon</default></entry>
+        <entry name="labelExtra"        type="String"><default>Dragon%d</default></entry>
+        <entry name="addAsterisk"       type="Bool"><default>false</default></entry>
+        <entry name="bold"              type="Bool"><default>false</default></entry>
+        <entry name="italic"            type="Bool"><default>false</default></entry>
+        <entry name="activeBold"        type="Bool"><default>true</default></entry>
+        <entry name="activeItalic"      type="Bool"><default>false</default></entry>
+        <entry name="allowLabelRotate"  type="Bool"><default>false</default></entry>
+        <entry name="pillDontChangeOp"  type="Bool"><default>false</default></entry>
+        <entry name="fontSize"          type="Int"><default>12</default></entry>
+        <entry name="activeFontSize"    type="Int"><default>12</default></entry>
+        <entry name="fixedLen"          type="Int"><default>40</default></entry>
+        </group>
+    <group name="type3">
+        <entry name="iconsList"         type="String"><default>format-text-code
+internet-services
+music-note-16th</default></entry>
+        <entry name="iconExtra"    type="String"><default>view-more-horizontal-symbolic</default></entry>
+        </group>
+    <group name="highlights">
+        <entry name="highlightLineRadius"   type="Float"><default>0.5</default></entry>
+        <entry name="highlightLineH"        type="Float"><default>10</default></entry>
+        <entry name="highlightLineW"        type="Float"><default>10</default></entry>
+        <entry name="highlightLineDefault"   type="Bool"><default>true</default></entry>
+
+        <entry name="sqDefaultSize"     type="Bool"><default>true</default></entry>
+        <entry name="sqHighlightWidth"  type="Int"><default>20</default></entry>
+        <entry name="sqHighlightHeight" type="Int"><default>20</default></entry>
+        <entry name="sqHighlightRadius" type="Int"><default>5</default></entry>
+        </group>
+
+    <group name="mouseActions">
+        <entry name="highlightOnHover"  type="Bool"><default>true</default></entry>
+        <entry name="tooltipOnHover"    type="Bool"><default>false</default></entry>
+        </group>
+    </kcfg>
