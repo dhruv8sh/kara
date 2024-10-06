@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 
+// NOT READY YET!
 Rectangle {
     id: pill
     z: 5
