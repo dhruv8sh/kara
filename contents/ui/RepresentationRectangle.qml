@@ -19,7 +19,10 @@ Rectangle {
 
     property int pos: 0
     property bool isActive: curr_page == pos
-    property bool hasWindows: tasksModel.count
+    property var abstractTasksModel: TaskManager.AbstractTasksModel
+    property var isWindow: abstractTasksModel.IsWindow
+    property int taskCount: 0
+    property bool hasWindows: taskCount>0
     property bool highlightActive: cfg.type != 0
     property bool needsAttention: tasksModel.anyTaskDemandsAttention
     property real highlightOpacity: Utils.getHighlightOpacity()
@@ -62,6 +65,11 @@ Rectangle {
         virtualDesktop: virtualDesktopInfo.desktopIds[pos]
         filterByVirtualDesktop: true
         filterByActivity: true
+        onCountChanged: {
+            Qt.callLater(function() {
+                Utils.updateTaskCount()
+            })
+        }
     }
     Loader {
         id: reptLoader
