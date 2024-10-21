@@ -18,7 +18,7 @@
         "Id": "org.dhruv8sh.kara",
         "License": "GPL-3.0+",
         "Name": "kara",
-        "Version": "0.7.1",
+        "Version": "0.7.3",
         "Website": "https://github.com/dhruv8sh/kara"
     },
     "X-Plasma-API-Minimum-Version": "6.0"
