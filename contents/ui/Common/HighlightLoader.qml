@@ -15,6 +15,8 @@ Loader {
             case 2: return "../highlights/SquareHighlight.qml"
             case 3: return "../highlights/FullHighlight.qml"
             case 4: return "../highlights/FullHighlightWithLine.qml"
+            case 5: return "../highlights/CanvasHighlight.qml"
+            case 6: return "../highlights/SquigglyCircleHighlight.qml"
             default: return null
         }
     }

@@ -33,7 +33,6 @@ Rectangle {
             delegate: Kirigami.Icon {
                 source: tasksModel.sourceModel[index].icon
                 fallback: "edit-clear"
-                Component.onCompleted: console.log(tasksModel.sourceModel[index])
             }
         }
     }

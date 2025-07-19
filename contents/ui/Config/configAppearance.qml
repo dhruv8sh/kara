@@ -198,7 +198,7 @@ Kirigami.ScrollablePage {
         QQC2.ComboBox {
             id: hType
             Kirigami.FormData.label: "Highlight Style:"
-            model: ["None","Line","Square","Full","Full with Line"]
+            model: ["None","Line","Square","Full","Full with Line","Animated Circle","Squiggly Circle"]
         }
     }
 }
