@@ -9,6 +9,7 @@ Kirigami.ScrollablePage {
     property alias cfg_blinkOnAttentionRequired: blinkOnAttentionRequired.checked
     property alias cfg_highlightOnHover: hoveringShowsHighlight.checked
     property alias cfg_tooltipOnHover: hoveringShowsTooltip.checked
+    property alias cfg_slightlyHighlight: slightlyHighlight.checked
     title: i18nc("@title","General")
     Kirigami.FormLayout {
         anchors.fill: parent
@@ -28,6 +29,15 @@ Kirigami.ScrollablePage {
         PC3.CheckBox {
             id: wrap
             Kirigami.FormData.label: i18n("Wraparound when scrolling:")
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            Kirigami.FormData.label: "Highlights"
+        }
+        PC3.CheckBox {
+            id: slightlyHighlight
+            Kirigami.FormData.label: i18n("Slightly highlight desktops with windows:")
         }
 
         Kirigami.Separator {

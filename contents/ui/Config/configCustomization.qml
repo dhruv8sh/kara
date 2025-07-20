@@ -134,5 +134,19 @@ Kirigami.ScrollablePage {
             id: asteriskCheck
             Kirigami.FormData.label: "Add asterisk(*) for desktops with active window:"
         }
+        ComboBox {
+            id: highlightTypeCombo
+            model: [
+                i18n("Full Highlight"),
+                i18n("Full Highlight with Line"),
+                i18n("Line Highlight"),
+                i18n("Square Highlight"),
+                i18n("Pill Style"),
+                i18n("Animated Circle"),
+                i18n("Squiggly Circle Highlight")
+            ]
+            currentIndex: cfg.highlightType
+            onCurrentIndexChanged: cfg.highlightType = currentIndex
+        }
     }
 }

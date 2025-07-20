@@ -76,13 +76,14 @@ function usesHighlight() {
     cfg.type != 0
 }
 
-function updateTaskCount() {
-    taskCount = 0
+function updateTaskCount(context, tasksModel) {
+    // Update the taskCount property of the provided context (RepresentationRectangle)
+    context.taskCount = 0
     for (var i = 0; i < tasksModel.count; i++) {
         const currentTask = tasksModel.index(i, 0)
         if (currentTask === undefined) continue
         if (tasksModel.data(currentTask, isWindow)) {
-            taskCount+=1
+            context.taskCount += 1
         }
     }
 }
