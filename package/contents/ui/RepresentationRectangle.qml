@@ -1,3 +1,4 @@
+import org.kde.plasma.plasma5support as Plasma5Support
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -58,7 +59,7 @@ Rectangle {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        onClicked: pagerModel.changePage(pos)
+        onClicked: executable.connectSource("qdbus6 org.kde.KWin /VirtualDesktopManager org.kde.KWin.VirtualDesktopManager.current " + virtualDesktopInfo.desktopIds[pos])
         acceptedButtons: Qt.LeftButton
         hoverEnabled: true
     }
@@ -87,5 +88,11 @@ Rectangle {
         text: virtualDesktopInfo.desktopNames[pos]
         delay: 2000
         timeout: 3000
+    }
+    Plasma5Support.DataSource {
+        id: "executable"
+        engine: "executable"
+        connectedSources: []
+        onNewData: function(sourceName, data) { disconnectSource(sourceName) }
     }
 }
