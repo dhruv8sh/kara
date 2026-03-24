@@ -23,13 +23,13 @@ MouseArea {
         }
         while (increment !== 0) {
             if (increment < 0) {
-                const nextPage = cfg.wrapOn? (curr_page + 1) % pagerModel.count :
-                Math.min(curr_page + 1, pagerModel.count - 1);
-                pagerModel.changePage(nextPage);
+                const nextPage = cfg.wrapOn? (curr_page + 1) % virtualDesktopInfo.numberOfDesktops :
+                Math.min(curr_page + 1, virtualDesktopInfo.numberOfDesktops - 1);
+                executable.connectSource("qdbus6 org.kde.KWin /VirtualDesktopManager org.kde.KWin.VirtualDesktopManager.current " + virtualDesktopInfo.desktopIds[nextPage]);
             } else {
-                const previousPage = cfg.wrapOn? (pagerModel.count + curr_page - 1) % pagerModel.count :
+                const previousPage = cfg.wrapOn? (virtualDesktopInfo.numberOfDesktops + curr_page - 1) % virtualDesktopInfo.numberOfDesktops :
                 Math.max(curr_page - 1, 0);
-                pagerModel.changePage(previousPage);
+                executable.connectSource("qdbus6 org.kde.KWin /VirtualDesktopManager org.kde.KWin.VirtualDesktopManager.current " + virtualDesktopInfo.desktopIds[previousPage]);
             }
             increment += (increment < 0) ? 1 : -1;
             wheelDelta = 0;
