@@ -32,6 +32,7 @@ PlasmoidItem {
         id: pagerModel
         enabled: true
         pagerType: PagerModel.VirtualDesktops;
+        screenGeometry: plasmoid.containment.screenGeometry
     }
     TaskManager.VirtualDesktopInfo { id: virtualDesktopInfo }
     TaskManager.ActivityInfo { id: activityInfo }

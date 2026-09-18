@@ -78,6 +78,11 @@ PagerModel::Private::Private(PagerModel *q)
     }
 
     QObject::connect(virtualDesktopInfo, &VirtualDesktopInfo::numberOfDesktopsChanged, q, &PagerModel::shouldShowPagerChanged);
+    QObject::connect(virtualDesktopInfo, &VirtualDesktopInfo::currentDesktopForScreenChanged, q, [this]() {
+        if (pagerType == VirtualDesktops) {
+            Q_EMIT this->q->currentPageChanged();
+        }
+    });
 
     QObject::connect(activityInfo, &ActivityInfo::currentActivityChanged, q, [this]() {
         if (pagerType == VirtualDesktops && windowModels.count()) {
@@ -319,14 +324,18 @@ void PagerModel::setScreenGeometry(const QRect &geometry)
             refresh();
         }
 
-        Q_EMIT showOnlyCurrentScreenChanged();
+        Q_EMIT screenGeometryChanged();
+        Q_EMIT currentPageChanged();
     }
 }
 
 int PagerModel::currentPage() const
 {
     if (d->pagerType == VirtualDesktops) {
-        return d->virtualDesktopInfo->desktopIds().indexOf(d->virtualDesktopInfo->currentDesktop());
+        const QVariant currentDesktop = d->screenGeometry.isValid()
+            ? d->virtualDesktopInfo->currentDesktopByScreenGeometry(d->screenGeometry)
+            : d->virtualDesktopInfo->currentDesktop();
+        return d->virtualDesktopInfo->desktopIds().indexOf(currentDesktop);
     } else {
         return d->activityInfo->runningActivities().indexOf(d->activityInfo->currentActivity());
     }
@@ -576,4 +585,3 @@ void PagerModel::computePagerItemSize()
 }
 
 #include "moc_pagermodel.cpp"
-
