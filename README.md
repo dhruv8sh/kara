@@ -84,6 +84,14 @@ sudo dnf install -y cmake extra-cmake-modules g++ qt6-qtbase-devel qt6-qtdeclara
   libdrm-devel plasma-workspace-devel kf6-kitemmodels-devel
 ```
 
+### <u>Solus</u>
+```
+sudo eopkg it -c system.devel && sudo eopkg it kf6-kirigami-devel qt6-qtbase-devel qt6-qtdeclarative-devel \
+  kf6-ki18n-devel kf6-kservice-devel kf6-kwindowsystem-devel libplasma-devel \
+  plasma-activities-devel kwin-devel wayland-devel libepoxy-devel \
+  libdrm-devel plasma-workspace-devel kf6-kitemmodels-devel
+```
+
 ### <u>Debian14 (forky)</u>
 ```
 sudo apt-get -y install cmake build-essential \
