@@ -69,6 +69,8 @@ Rectangle {
         virtualDesktop: virtualDesktopInfo.desktopIds[pos]
         filterByVirtualDesktop: true
         filterByActivity: true
+        screenGeometry: plasmoid.containment.screenGeometry
+        filterByScreen: true
         onCountChanged: {
             Qt.callLater(function() {
                 Utils.updateTaskCount()
